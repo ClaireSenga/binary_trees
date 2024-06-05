@@ -14,6 +14,12 @@ typedef struct binary_tree_s bst_t;
 typedef struct binary_tree_s avl_t;
 typedef struct binary_tree_s heap_t;
 
+struct list_s
+{
+	int n;
+	struct list_s *next;
+} typedef struct list_s list_t;
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

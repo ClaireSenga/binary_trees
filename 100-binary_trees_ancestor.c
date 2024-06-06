@@ -122,5 +122,5 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 
 	free_list(ancestor_first);
 	free_list(ancestor_second);
-	return ((binary_tree_t *)last_common_ancestor);
+	return (NULL);
 }

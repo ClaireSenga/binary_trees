@@ -1,60 +1,60 @@
 #include "binary_trees.h"
 
 /**
- * create_list1 - This function creates a list using
+ * create_ancestor_list1 - This function creates a list using
  * singly linked list structure.
  * @first: A pointer to the first treee.
  *
  * Return: A pointer to the head of the list.
  */
-list_t *create_list1(const binary_tree_t *first)
+list_t *create_ancestor_list1(const binary_tree_t *first)
 {
-	list_t *new_node1, *list1;
+	list_t *new_ancestor_node, *list1;
 
 	if (first == NULL)
 		return (NULL);
 	list1 = NULL;
 	while (first != NULL)
 	{
-		new_node1 = malloc(sizeof(list_t));
-		if (new_node1 == NULL)
+		new_ancestor_node = malloc(sizeof(list_t));
+		if (new_ancestor_node == NULL)
 		{
-			perror("Memory allocation failed\n");
-			exit(EXIT_FAILURE);
+			free_list(list1);
+			return (NULL);
 		}
-		new_node1->n = first;
-		new_node1->next = list1;
-		list1 = new_node1;
+		new_ancestor_node->n = first;
+		new_ancestor_node->next = list1;
+		list1 = new_ancestor_node;
 		first = first->parent;
 	}
 	return (list1);
 }
 
 /**
- * create_list2 - Creates the second list using
+ * create_ancestor_list2 - Creates the second list using
  * singly linked list structure.
  * @second: A pointer to the second tree.
  *
  * Return: A pointer to the head of the list.
  */
-list_t *create_list2(const binary_tree_t *second)
+list_t *create_ancestor_list2(const binary_tree_t *second)
 {
-	list_t *new_node2, *list2;
+	list_t *new_ancestor_node, *list2;
 
 	list2 = NULL;
 	if (second == NULL)
 		return (NULL);
 	while (second != NULL)
 	{
-		new_node2 = malloc(sizeof(list_t));
-		if (new_node2 == NULL)
+		new_ancestor_node = malloc(sizeof(list_t));
+		if (new_ancestor_node == NULL)
 		{
-			perror("Memory allocation failed\n");
-			exit(EXIT_FAILURE);
+			free_list(list2);
+			return (NULL);
 		}
-		new_node2->n = second;
-		new_node2->next = list2;
-		list2 = new_node2;
+		new_ancestor_node->n = second;
+		new_ancestor_node->next = list2;
+		list2 = new_ancestor_node;
 		second = second->parent;
 	}
 	return (list2);
@@ -95,8 +95,8 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	if (first == NULL || second == NULL)
 		return (NULL);
 
-	ancestor_first = create_list1(first);
-	ancestor_second = create_list2(second);
+	ancestor_first = create_ancestor_list1(first);
+	ancestor_second = create_ancestor_list2(second);
 	last_common_ancestor = NULL;
 	while (ancestor_first != NULL && ancestor_second != NULL)
 	{
@@ -119,7 +119,6 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		free_list(ancestor_second);
 		return ((binary_tree_t *)last_common_ancestor);
 	}
-
 	free_list(ancestor_first);
 	free_list(ancestor_second);
 	return (NULL);

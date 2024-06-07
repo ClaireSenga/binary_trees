@@ -16,9 +16,11 @@ typedef struct binary_tree_s heap_t;
 
 struct list_s
 {
-	int n;
+	const binary_tree_t *n;
 	struct list_s *next;
-} typedef struct list_s list_t;
+};
+
+typedef struct list_s list_t;
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,5 +67,8 @@ heap_t *heap_insert(heap_t **root, int value);
 heap_t *array_to_heap(int *array, size_t size);
 int heap_extract(heap_t **root);
 int *heap_to_sorted_array(heap_t *heap, size_t *size);
+list_t *create_list1(const binary_tree_t *first);
+list_t *create_list2(const binary_tree_t *second);
+void free_list(list_t *list);
 
 #endif

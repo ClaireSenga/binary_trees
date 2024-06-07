@@ -67,8 +67,8 @@ heap_t *heap_insert(heap_t **root, int value);
 heap_t *array_to_heap(int *array, size_t size);
 int heap_extract(heap_t **root);
 int *heap_to_sorted_array(heap_t *heap, size_t *size);
-list_t *create_list1(const binary_tree_t *first);
-list_t *create_list2(const binary_tree_t *second);
+list_t *create_ancestor_list1(const binary_tree_t *first);
+list_t *create_ancestor_list2(const binary_tree_t *second);
 void free_list(list_t *list);
 
 #endif

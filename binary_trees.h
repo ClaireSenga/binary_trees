@@ -22,6 +22,14 @@ struct list_s
 
 typedef struct list_s list_t;
 
+struct queue_s
+{
+	const binary_tree_t *node;
+	struct queue_s *next;
+};
+
+typedef struct queue_s queue_t;
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

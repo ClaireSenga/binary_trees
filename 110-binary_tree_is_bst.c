@@ -1,9 +1,8 @@
 #include "binary_trees.h"
-#include <limits.h>
-#include <stdlib.h>
 
 /**
- * Helper function to check if a bi-tree is a valid BST within a given range.
+ * is_bst_helper - Helper function to check if a binary tree is a
+ * valid BST within a given range.
  * @tree: Pointer to the root node of the tree to check.
  * @min: Min allowed value for nodes (exclusive).
  * @max: Max allowed value for nodes (exclusive).

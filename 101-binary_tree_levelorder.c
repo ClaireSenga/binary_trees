@@ -1,17 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "binary_trees.h"
-
-/**
- * struct queue_s - singly linked list for queue.
- * @node: pointer to a binary tree node.
- * @next: pointer to the next node in the queue.
- */
-typedef struct queue_s
-{
-	const binary_tree_t *node;
-	struct queue_s *next;
-} queue_t;
 
 /**
  * enqueue - adds a node to the end of queue.
@@ -32,14 +19,14 @@ void enqueue(queue_t **head, const binary_tree_t *node)
 
 	if (*head == NULL)
 	{
-	*head = new_node;
+		*head = new_node;
 	}
 	else
 	{
-	temp = *head;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = new_node;
+		temp = *head;
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = new_node;
 	}
 }
 
@@ -56,7 +43,7 @@ const binary_tree_t *dequeue(queue_t **head)
 	const binary_tree_t *node;
 
 	if (*head == NULL)
-	return (NULL);
+		return (NULL);
 
 	temp = *head;
 	node = temp->node;
@@ -84,11 +71,11 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 
 	while ((current = dequeue(&queue)) != NULL)
 	{
-	func(current->n);
+		func(current->n);
 
-	if (current->left != NULL)
-		enqueue(&queue, current->left);
-	if (current->right != NULL)
-		enqueue(&queue, current->right);
+		if (current->left != NULL)
+			enqueue(&queue, current->left);
+		if (current->right != NULL)
+			enqueue(&queue, current->right);
 	}
 }

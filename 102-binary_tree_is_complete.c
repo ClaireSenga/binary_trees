@@ -1,18 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "binary_trees.h"
-
-/**
- * struct queue_s - singly linked list for queue
- * @node: a pointer to a bi-tree node
- * @next: a pointer to the next node in the queue
- */
-
-typedef struct queue_s
-{
-	const binary_tree_t *node;
-	struct queue_s *next;
-} queue_t;
 
 /**
  * enqueue - adds a node to the end of the queue
@@ -26,20 +12,22 @@ void enqueue(queue_t **head, const binary_tree_t *node)
 	queue_t *temp;
 
 	if (new_node == NULL)
-	return;
+		return;
 
 	new_node->node = node;
 	new_node->next = NULL;
 
 	if (*head == NULL)
 	{
-	*head = new_node;
+		*head = new_node;
 	}
 	else
 	{
-	temp = *head;
+		temp = *head;
 		while (temp->next != NULL)
-		temp = temp->next;
+		{
+			temp = temp->next;
+		}
 		temp->next = new_node;
 	}
 }
@@ -57,7 +45,7 @@ const binary_tree_t *dequeue(queue_t **head)
 	const binary_tree_t *node;
 
 	if (*head == NULL)
-	return (NULL);
+		return (NULL);
 
 	temp = *head;
 	node = temp->node;
@@ -80,24 +68,22 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	int flag = 0; /* Flag to indicate the first encountered NULL node */
 
 	if (tree == NULL)
-	return (0);
+		return (0);
 
 	enqueue(&queue, tree);
 
-	while ((current = dequeue(&queue)) != NULL)
+	while (queue != NULL)
 	{
-	if (current == NULL)
-	{
-		flag = 1;
-	}
-	else
-	{
-	if (flag)
-		return (0);
-
-	enqueue(&queue, current->left);
-	enqueue(&queue, current->right);
-	}
+		current = dequeue(&queue);
+		if (current == NULL)
+			flag = 1;
+		if (flag && current != NULL)
+			return (0);
+		if (current != NULL)
+		{
+			enqueue(&queue, current->left);
+			enqueue(&queue, current->right);
+		}
 	}
 
 	return (1);

@@ -1,16 +1,5 @@
 #include "binary_trees.h"
-
-/**
- * max - Returns the maxi of two ints
- * @a: The first int
- * @b: The second int
- *
- * Return: The max of the two integers
- */
-int max(int a, int b)
-{
-	return (a > b ? a : b);
-}
+#define max(a, b) (a > b ? a : b)
 
 /**
  * height - Measures the height of a binary tree
